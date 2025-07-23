@@ -1,0 +1,98 @@
+# IdeaScrawl Agenda - File Metadata & Version Control
+# This file tracks ID tags and versions for all project files
+
+[manifest.json]
+id = MAN-001-V02
+version = 0.1.0
+last_updated = 2025-07-23
+description = Chrome extension manifest - Fixed JSON format
+
+[background.js]
+id = BG-001-V02
+version = 0.1.0
+last_updated = 2025-07-23
+description = Service worker with intelligent queue system
+
+[content.js]
+id = CNT-001-V01
+version = 0.1.0
+last_updated = 2025-07-23
+description = Content script for ChatGPT message capture
+
+[popup.html]
+id = POP-001-V01
+version = 0.1.0
+last_updated = 2025-07-23
+description = Extension popup HTML with modern UI
+
+[popup.js]
+id = POPJS-001-V02
+version = 0.1.0
+last_updated = 2025-07-23
+description = Popup logic with local storage and modal support
+
+[api/generate_page.py]
+id = API-GEN-001-V01
+version = 1.0.0
+last_updated = 2025-07-23
+description = FastAPI main endpoint with Leonardo integration
+
+[api/storage.py]
+id = API-STORAGE-001-V01
+version = 1.0.0
+last_updated = 2025-07-23
+description = Supabase storage integration module
+
+[requirements.txt]
+id = REQ-001-V01
+version = 1.0.0
+last_updated = 2025-07-23
+description = Python dependencies for FastAPI backend
+
+[requirements.md]
+id = DOC-REQ-001-V01
+version = 1.0.0
+last_updated = 2025-07-23
+description = Technical specification document
+
+[.env]
+id = ENV-001-V01
+version = 1.0.0
+last_updated = 2025-07-23
+description = Environment variables configuration
+
+[.env.example]
+id = ENV-EXAMPLE-001-V01
+version = 1.0.0
+last_updated = 2025-07-23
+description = Environment variables template
+
+[.gitignore]
+id = GITIGNORE-001-V01
+version = 1.0.0
+last_updated = 2025-07-23
+description = Git ignore rules for sensitive files
+
+[README.md]
+id = README-001-V01
+version = 1.0.0
+last_updated = 2025-07-23
+description = Project documentation and setup guide
+
+[DATASET_GUIDE.md]
+id = DOC-DATASET-001-V01
+version = 1.0.0
+last_updated = 2025-07-23
+description = Guide for creating manuscript dataset
+
+[DEMO_STATUS.md]
+id = DOC-DEMO-001-V01
+version = 1.0.0
+last_updated = 2025-07-23
+description = Current demo status and capabilities
+
+[INSTALL_EXTENSION.md]
+id = DOC-INSTALL-001-V01
+version = 1.0.0
+last_updated = 2025-07-23
+description = Chrome extension installation guide

@@ -1,0 +1,158 @@
+<!-- ID: POP-001-V01 -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>IdeaScrawl Agenda</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 10px;
+      width: 320px;
+      background: #f9f9f9;
+    }
+    h2 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      text-align: center;
+      color: #2c3e50;
+    }
+    .idea {
+      border-bottom: 1px solid #eee;
+      padding: 8px 0;
+      background: white;
+      margin-bottom: 4px;
+      padding: 8px;
+      border-radius: 4px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+    .idea:last-child {
+      border: none;
+    }
+    .idea-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+    .title {
+      font-weight: bold;
+      font-size: 14px;
+      color: #2c3e50;
+      flex: 1;
+    }
+    .text {
+      margin-top: 4px;
+      font-size: 13px;
+      color: #555;
+      line-height: 1.4;
+    }
+    
+    /* Estados */
+    .status {
+      margin-right: 6px;
+      font-size: 12px;
+    }
+    .status.generated {
+      color: #27ae60;
+    }
+    .status.error {
+      color: #e74c3c;
+    }
+    .status.processing {
+      color: #f39c12;
+    }
+    
+    /* Botón ver página */
+    .view-page {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 4px 8px;
+      border-radius: 3px;
+      font-size: 11px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .view-page:hover {
+      background: #2980b9;
+    }
+    
+    /* Mensajes de error */
+    .error-msg {
+      color: #e74c3c;
+      font-size: 11px;
+      margin-top: 4px;
+      padding: 2px 4px;
+      background: #fdf2f2;
+      border-radius: 2px;
+    }
+    
+    /* Estados vacío y error */
+    .empty-state, .error-state {
+      text-align: center;
+      padding: 20px;
+      color: #666;
+    }
+    
+    /* Stats */
+    .stats {
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid #eee;
+    }
+    .stats-summary {
+      font-size: 11px;
+      color: #666;
+      text-align: center;
+    }
+    
+    /* Modal para imágenes */
+    .image-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1000;
+    }
+    .modal-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+    }
+    .close-modal {
+      position: absolute;
+      top: -30px;
+      right: 0;
+      background: white;
+      border: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <h2>Mis Ideas</h2>
+  <div id="ideas">Cargando…</div>
+  <script src="popup.js"></script>
+</body>
+</html>

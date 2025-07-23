@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IdeaScrawl Debug</title>
+    <style>
+        body { font-family: monospace; padding: 20px; }
+        .test { margin: 10px 0; padding: 10px; border: 1px solid #ccc; }
+        .success { background: #e8f5e8; }
+        .error { background: #ffe8e8; }
+        button { padding: 8px 16px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>🔧 IdeaScrawl Debug Tools</h1>
+    
+    <div class="test">
+        <h3>1. API Connection Test</h3>
+        <button onclick="testApiConnection()">Test API Health</button>
+        <div id="api-result"></div>
+    </div>
+    
+    <div class="test">
+        <h3>2. Local Storage Test</h3>
+        <button onclick="testLocalStorage()">Check Storage</button>
+        <button onclick="clearLocalStorage()">Clear Storage</button>
+        <div id="storage-result"></div>
+    </div>
+    
+    <div class="test">
+        <h3>3. Background Script Test</h3>
+        <button onclick="testBackgroundScript()">Send Test Message</button>
+        <div id="background-result"></div>
+    </div>
+    
+    <div class="test">
+        <h3>4. Generate Test Page</h3>
+        <button onclick="testGeneratePage()">Test Generate Endpoint</button>
+        <div id="generate-result"></div>
+    </div>
+
+    <script>
+        async function testApiConnection() {
+            const result = document.getElementById('api-result');
+            result.innerHTML = 'Testing...';
+            
+            try {
+                const response = await fetch('http://localhost:8000/health');
+                const data = await response.json();
+                result.innerHTML = `<div class="success">✅ API OK: ${JSON.stringify(data)}</div>`;
+            } catch (error) {
+                result.innerHTML = `<div class="error">❌ API Error: ${error.message}</div>`;
+            }
+        }
+        
+        async function testLocalStorage() {
+            const result = document.getElementById('storage-result');
+            
+            try {
+                const stored = await chrome.storage.local.get(['ideascrawl_ideas']);
+                const ideas = stored.ideascrawl_ideas || [];
+                result.innerHTML = `<div class="success">💾 Storage: ${ideas.length} ideas found</div>`;
+                
+                if (ideas.length > 0) {
+                    result.innerHTML += `<div style="margin-top: 10px;"><pre>${JSON.stringify(ideas[0], null, 2)}</pre></div>`;
+                }
+            } catch (error) {
+                result.innerHTML = `<div class="error">❌ Storage Error: ${error.message}</div>`;
+            }
+        }
+        
+        async function clearLocalStorage() {
+            try {
+                await chrome.storage.local.remove(['ideascrawl_ideas']);
+                document.getElementById('storage-result').innerHTML = '<div class="success">🗑️ Storage cleared</div>';
+            } catch (error) {
+                document.getElementById('storage-result').innerHTML = `<div class="error">❌ Clear Error: ${error.message}</div>`;
+            }
+        }
+        
+        async function testBackgroundScript() {
+            const result = document.getElementById('background-result');
+            result.innerHTML = 'Sending test message...';
+            
+            try {
+                const response = await chrome.runtime.sendMessage({
+                    type: 'newMessage',
+                    chatTitle: 'Debug Test',
+                    text: 'This is a test message from debug tools'
+                });
+                
+                result.innerHTML = `<div class="success">📨 Background Response: ${JSON.stringify(response)}</div>`;
+            } catch (error) {
+                result.innerHTML = `<div class="error">❌ Background Error: ${error.message}</div>`;
+            }
+        }
+        
+        async function testGeneratePage() {
+            const result = document.getElementById('generate-result');
+            result.innerHTML = 'Testing generate endpoint...';
+            
+            try {
+                const response = await fetch('http://localhost:8000/generate-page', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        title: 'Debug Test',
+                        text: 'This is a test message from debug tools',
+                        timestamp: Date.now()
+                    })
+                });
+                
+                const data = await response.json();
+                result.innerHTML = `<div class="success">🎨 Generate OK: ${JSON.stringify(data, null, 2)}</div>`;
+            } catch (error) {
+                result.innerHTML = `<div class="error">❌ Generate Error: ${error.message}</div>`;
+            }
+        }
+    </script>
+</body>
+</html>
